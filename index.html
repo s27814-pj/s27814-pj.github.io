@@ -1,0 +1,49 @@
+<!DOCTYPE html> <!-- comment -->
+<html lang="pl" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>galeria</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+</head>
+
+<body>
+
+
+
+<button id="gallery-button">Keep</button>
+
+<div id="gallery-container">
+    <button id="print-button">Print</button>
+    <button id="close-button">Close</button>
+    <div id="gallery-images"></div>
+</div>
+
+
+<div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+    <img class="image" id="img1" src="img/osiris.jpg" draggable="false"/>
+    <img class="image" src="img/cat.jpeg" draggable="false"/>
+    <img class="image" src="img/lotr-set-new-zeland.jpg" draggable="false"/>
+    <img class="image" src="img/Scotland-Edinburgh-Scott-Monument.jpg" draggable="false"/>
+    <button id="add-new">ADD</button>
+
+</div>
+
+<form id="newImage">
+    <!--        <button type="button" id="add-new">ADD</button>-->
+    <div id="fields">
+        <label for="link">LINK</label>
+        <input type="text" id="link" name="link">
+        <label for="desc">Description</label>
+        <input type="text" id="desc" name="desc">
+        <button type="button" id="send">Add this one</button>
+    </div>
+</form>
+
+</body>
+
+</html>
