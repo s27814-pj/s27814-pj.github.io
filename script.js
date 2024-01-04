@@ -51,10 +51,9 @@ window.onload = function() {
 
             hideTrack.style.display ='none';
 
-            galleryContainer.style.display = "flex"; // Show the gallery container
+            galleryContainer.style.display = "flex";
             printButton.style.display = "flex";
-            // You can populate the galleryImages with your stored images dynamically.
-            // For simplicity, I'll just use placeholder text.
+
             galleryImages.innerHTML = "TO PRINT";
 
             var imagePath = imageStorage[0].attributes.src.nodeValue;
@@ -71,7 +70,7 @@ window.onload = function() {
 
         closeButton.addEventListener("click", function () {
             hideTrack.style.display =trackValue;
-            galleryContainer.style.display = "none"; // Hide the gallery container
+            galleryContainer.style.display = "none";
         });
 
 
