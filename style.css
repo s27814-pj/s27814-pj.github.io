@@ -93,3 +93,12 @@ body {
     border-radius: 5px;
     font-size: 16px;
 }
+
+#fields {
+    display:none;
+    font-size:56px;
+}
+
+#newImage {
+    display:flex;
+}

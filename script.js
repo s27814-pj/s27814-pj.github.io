@@ -100,18 +100,47 @@ window.onload = function() {
 
     
     //dodaj nowe
+
+    const showForm = document.getElementById("fields");
     
     var buttonAdd = document.getElementById("add-new").onclick = function (){
         //const childOne = document.getElementById("image-track").firstElementChild;
+        // const lastChild = document.getElementById("image-track").lastElementChild;
+        // const prevLastChild = lastChild.previousElementSibling;
+        // const clone = prevLastChild.cloneNode(true);
+        // //console.log(clone);
+        // //document.getElementById("image-track").appendChild(clone);
+        // //console.log(1);
+        // clone.attributes.src.nodeValue="https://images.pexels.com/photos/16673059/pexels-photo-16673059/free-photo-of-pylon-and-high-voltage-cables-against-the-cloudy-sky.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        // document.getElementById("image-track").insertBefore(clone, lastChild);
+        //lastChild.firstChild.style.display="flex";
+        //console.log(lastChild);
+        //console.log(lastChild.firstChild.style.display);
+        hideTrack.style.display ='none';
+        showForm.style.display="flex";
+    }
+
+
+    var buttonKindaSend = document.getElementById("send").onclick = function (){
+        var link = document.getElementById("link").value;
+        var desc = document.getElementById("desc").value;
+        console.log(desc);
+
         const lastChild = document.getElementById("image-track").lastElementChild;
         const prevLastChild = lastChild.previousElementSibling;
         const clone = prevLastChild.cloneNode(true);
         //console.log(clone);
         //document.getElementById("image-track").appendChild(clone);
         //console.log(1);
-        clone.attributes.src.nodeValue="https://images.pexels.com/photos/16673059/pexels-photo-16673059/free-photo-of-pylon-and-high-voltage-cables-against-the-cloudy-sky.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        clone.attributes.src.nodeValue=link;
         document.getElementById("image-track").insertBefore(clone, lastChild);
+
+
+
+        showForm.style.display="none";
+        document.getElementById("link").value="";
+        document.getElementById("desc").value="";
+        hideTrack.style.display ='flex';
     }
-    
     
 }
