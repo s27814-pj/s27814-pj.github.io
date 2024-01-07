@@ -177,7 +177,7 @@ window.onload = function () {
         const clone = prevLastChild.cloneNode(true);
 
         clone.attributes.src.nodeValue = link;
-        clone.attributes.class.nodeValue += " new";
+        clone.attributes.class.nodeValue = "image new";
         clone.attributes.alt.nodeValue=desc;
         clone.dataset.size="NEW";
         clone.dataset.age="NEW";
