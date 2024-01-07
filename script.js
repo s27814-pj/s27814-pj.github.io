@@ -4,9 +4,21 @@ window.onload = function () {
     window.onmousedown = e => {
         if (window.innerWidth > 768) track.dataset.mouseDownAt = e.clientX;
         else track.dataset.mouseDownAt = e.clientY;
+        //console.log(track.dataset.mouseDownAt);
+    }
+
+    window.ontouchstart = e => {
+        if (window.innerWidth > 768) track.dataset.mouseDownAt = e.touches[0].clientX;
+        else track.dataset.mouseDownAt = e.touches[0].clientY;
+        //console.log(track.dataset.mouseDownAt);
     }
 
     window.onmouseup = () => {
+        track.dataset.mouseDownAt = "0";
+        track.dataset.prevPercentage = track.dataset.percentage;
+    }
+
+    window.ontouchend =() =>{
         track.dataset.mouseDownAt = "0";
         track.dataset.prevPercentage = track.dataset.percentage;
     }
@@ -57,6 +69,52 @@ window.onload = function () {
 
     }
 
+
+    window.ontouchmove = e => {
+        if (track.dataset.mouseDownAt === "0") return;
+
+        var mouseDelta = 0.1;
+        var maxDelta = 0.1;
+
+        if (window.innerWidth > 768) {
+            mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.touches[0].clientX,
+                maxDelta = window.innerWidth / 2;
+        } else {
+            mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.touches[0].clientY,
+                maxDelta = window.innerHeight / 2;
+        }
+
+
+        const percentage = (mouseDelta / maxDelta) * -100,
+            nextPercentageVal = parseFloat(track.dataset.prevPercentage) + percentage;
+        nextPercentage = Math.max(Math.min(nextPercentageVal, 0), -100);
+
+        track.dataset.percentage = nextPercentage;
+
+        //track.style.transform = `translate(${nextPercentage}%, -50%)`;
+
+        if (window.innerWidth > 768) {
+            track.animate({
+                transform: `translate(${nextPercentage}%, -50%)`
+            }, {duration: 1200, fill: "forwards"});
+            for (const image of track.getElementsByClassName("image")) {
+                // image.style.objectPosition=`${nextPercentage+100}% 50%`;
+                image.animate({
+                    objectPosition: `${nextPercentage + 100}% 50%`
+                }, {duration: 1200, fill: "forwards"});
+            }
+        } else {
+            track.animate({
+                transform: `translate(-50%, ${nextPercentage}%)`
+            }, {duration: 1200, fill: "forwards"});
+            for (const image of track.getElementsByClassName("image")) {
+                image.animate({
+                    objectPosition: `50% ${nextPercentage + 100}%`
+                }, {duration: 1200, fill: "forwards"});
+            }
+        }
+
+    }
 
     const galleryButton = document.getElementById("gallery-button");
     const galleryContainer = document.getElementById("gallery-container");
