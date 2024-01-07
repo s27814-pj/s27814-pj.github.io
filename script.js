@@ -15,11 +15,13 @@ window.onload = function () {
 
     window.onmouseup = () => {
         track.dataset.mouseDownAt = "0";
+        if (track.dataset.percentage===undefined) track.dataset.percentage=0;
         track.dataset.prevPercentage = track.dataset.percentage;
     }
 
     window.ontouchend =() =>{
         track.dataset.mouseDownAt = "0";
+        if (track.dataset.percentage===undefined) track.dataset.percentage=0;
         track.dataset.prevPercentage = track.dataset.percentage;
     }
 
@@ -202,9 +204,9 @@ window.onload = function () {
             var ratio = elem.width / elem.height;
 
             pdf.addImage(imagePath, 'JPEG', 10, ((index % 4) * 71) + 10, ratio * 60, 60);
-            pdf.text("Name:" + elem.alt, 200, ((index % 4) * 71) + 20, null, null, "right");
-            pdf.text("Size:" + elem.dataset.size, 200, ((index % 4) * 71) + 40, null, null, "right");
-            pdf.text("Age:" + elem.dataset.age, 200, ((index % 4) * 71) + 60, null, null, "right");
+            pdf.text("Name: " + elem.alt, 200, ((index % 4) * 71) + 20, null, null, "right");
+            pdf.text("Size: " + elem.dataset.size, 200, ((index % 4) * 71) + 40, null, null, "right");
+            pdf.text("Age: " + elem.dataset.age, 200, ((index % 4) * 71) + 60, null, null, "right");
 
             if (index % 4 != 0) pdf.line(0, ((index % 4) * 71) + 5, 250, ((index % 4) * 71) + 5);
 
